@@ -103,10 +103,11 @@ function calculateSummary(recipe: Recipe, configuration: Result[]) {
 
     /**
      * Calculate the total amount per unit of measurement for each nutrient
-     * It should be the total amount of that nutrient divide by the total amount of the configuration multiply by the base amount (100 grams)
+     * It should be the total amount of that nutrient divide by the total amount of the configuration multiply by the base amount (100 grams) AFAIU
      */
     const nutrientsAtCheapestCost: Record<string, NutrientFact> = {}
     for (const key in mapNutrientsByName) {
+        // I don't know why the sum of the amount is the answer
         const sum = mapNutrientsByName[key].reduce((s, e) => s += e.quantityAmount.uomAmount, 0);
         nutrientsAtCheapestCost[key] = {
             nutrientName: key,
